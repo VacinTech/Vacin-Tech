@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <br><br><br>
+    <div class="container">
+        <h1>Calculadora Financeira</h1>
+        <div class="inputs">
+            <div class="ipts1">
+                <div class="ipt1">
+                    <label>Insira o nome da vacina:</label>
+                    <input type="text" id="input_nome">
+                </div>
+                <div class="ipt2">
+                    <label>Insira a quantidade de unidades por lote:</label>
+                    <input type="text" id="input_por_lote">
+                </div>
+            </div>
+            <div class="ipts1">
+                <div class="ipt1">
+                    <label>Insira a quantidade de lotes:</label>
+                    <input type="text" id="input_qtd_lotes">
+                </div>
+                <div class="ipt2">
+                    <label>Insira o preço médio de produção <b>por</b> vacina:</label>
+                    <input type="text" id="input_preco">
+                </div>
+            </div>
+            <div class="ipts1">
+                <div class="ipt1">
+                    <label>Insira a quantidade de viagens realizadas no mês:</label>
+                    <input type="text" id="input_qtd_viagem">
+                </div>
+                <div class="ipt2">
+                    <label>Insira veículo que vai realizar o transporte:</label>
+                    <input type="text" id="input_veiculo">
+                </div>
+            </div>
+        </div>
+        <div class="resultado">
+            <button onclick="calculo()">Calcular</button>
+            <div id="mensagem"></div>
+        </div>
+
+    </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function calculo() {
+
+        let nomeVacina = input_nome.value;
+        let unidadesPorLote = Number(input_por_lote.value);
+        let quantidadeLotes = Number(input_qtd_lotes.value);
+        let precoPorVacina = Number(input_preco.value);
+        let viagensMes = Number(input_qtd_viagem.value);
+        let veiculo = input_veiculo.value;
+
+        let vacinasPorViagem = unidadesPorLote * quantidadeLotes;
+        let vacinasPorMes = vacinasPorViagem * viagensMes;
+
+        let vacinasPerdidas = vacinasPorMes * 0.2;
+        let prejuizoMensal = vacinasPerdidas * precoPorVacina;
+
+        let vacinasSalvas = vacinasPerdidas;
+        let economiaMensal = vacinasSalvas * precoPorVacina;
+
+        let prejuizoAnual = prejuizoMensal * 12;
+        let vacinasSalvasAno = vacinasSalvas * 12;
+
+        mensagem.innerHTML = `
+<span style = "color: red;">
+    <b>Sem o sensor VaccinMonitorate:</b><br><br> 
+    Do total de ${vacinasPorMes} vacinas transportadas por mês
+    no veículo ${veiculo},
+    a estimativa de perda é de ${vacinasPerdidas} vacinas (20%)
+    da vacina ${nomeVacina}. <br>
+    Isso pode gerar um prejuízo mensal de
+    <b>R$ ${prejuizoMensal}</b>
+    e um prejuízo anual de
+    <b>R$ ${prejuizoAnual}</b>.
+</span>
+    <br><br>
+
+    <span style="color:green;">
+    <b>Com o sensor VaccinMonitorate:</b><br><br>
+    O alerta rápido evita a perda de aproximadamente
+    ${vacinasSalvas} vacinas por mês. Economia mensal de
+    <b>R$ ${economiaMensal}</b>.<br>
+    No ano, cerca de
+    ${vacinasSalvasAno} vacinas podem ser preservadas.
+    </span>
+    `;
+    }
+</script>
