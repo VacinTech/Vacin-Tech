@@ -1,61 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Dashboard VacinTech - Monitoramento Real-Time</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        .chart-container {
-            width: 80%;
-            margin: auto;
-        }
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
 
-        #status-box {
-            text-align: center;
-            font-family: sans-serif;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-
-<body>
-
+  <body>
+    <header class="cabecalho">
+      <div class="logotipo">
+        <img
+          id="logo"
+          height="55px"
+          width="55px"
+          src="img/logo-VacinTech.png"
+        />
+      </div>
+      <div id="nome">
+        VACCIN<span style="color: rgb(42, 58, 85)">TECH </span>
+      </div>
+      <ul class="navegacao">
+        <li>
+          <a href="#visao-geral">Visão Geral</a>
+        </li>
+        <li>
+          <a href="#funcionalidades">Funcionalidades</a>
+        </li>
+        <li>
+          <a href="">Calculadora</a>
+        </li>
+        <li>
+          <a href="dashboard.html">Dashboard</a>
+        </li>
+      </ul>
+      <div class="perfilUsuario">
+        <div id="textoPerfil">
+          Olá, acesse sua conta<br />
+          <strong> ou faça seu cadastro</strong>
+        </div>
+        <img
+          id="fotoUsuario"
+          height="100px"
+          width="100px"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO14C3vuPxliUNKaNLf7tUwyKwS-fQKcmYXMQxVshpgaa7t_De"
+        />
+      </div>
+    </header>
     <div id="status-box">
-        <h1>VacinTech: Monitoramento de Vacinas</h1>
-        <p>Temperatura Atual: <span id="temp-atual">4.7</span>°C</p>
+      <h1>Temperatura Sensores:</h1>
     </div>
 
     <div class="chart-container">
-        <canvas id="myChart"></canvas>
+      <canvas id="myChart"></canvas>
     </div>
 
-   <script>
-const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-        datasets: [{
-            label: 'Temperatura Média',
-            data: [4.5, 5.0, 4.3, 4.1, 3.7, 4.0],
-            backgroundColor: ['rgb(54, 162, 235)'],
-            borderColor: ['rgb(54, 162, 235)'],
-            borderWidth: 1
-            
-        }
-    
-    ]
- },   
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
-</body>
+    <script>
+      const labels = ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
+      const ctx = document.getElementById("myChart").getContext("2d");
+      const myChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Transporte 1",
+              data: [4.5, 5.0, 4.3, 4.1, 3.7, 4.0],
+              backgroundColor: ["#FF7A00"],
+              borderColor: ["#FF7A00"],
+              borderWidth: 3,
+            },
+            {
+              label: "Transporte 2",
+              data: [3, 3, 3.8, 4.2, 3.5, 2.5],
+              backgroundColor: ["#007BFF"],
+              borderColor: ["#007BFF"],
+              borderWidth: 3,
+            },
+            {
+              label: "Transporte 3",
+              data: [5, 5.3, 5.6, 6, 6.3, 6.8],
+              backgroundColor: ["#8A2BE2"],
+              borderColor: ["#8A2BE2"],
+              borderWidth: 3,
+            },
+            {
+              label: "Transporte 4",
+              data: [5, 5.8, 6.2, 6.9, 7.4, 8.5],
+              backgroundColor: ["#c7f000"],
+              borderColor: ["#c7f000"],
+              borderWidth: 3,
+            },
+            {
+              label: "Atenção 3°C",
+              data: labels.map(() => 3),
+              borderColor: "yellow",
+              borderWidth: 2,
+              pointRadius: 0,
+              id: "limite",
+            },
+            {
+              label: "Atenção 7°C",
+              data: labels.map(() => 7),
+              borderColor: "yellow",
+              borderWidth: 2,
+              pointRadius: 0,
+              id: "limite",
+            },
+            {
+              label: "Perigo 2°C",
+              data: labels.map(() => 2),
+              borderColor: "red",
+              borderWidth: 2,
+              pointRadius: 0,
+              id: "limite",
+            },
+            {
+              label: "Perigo 8°C",
+              data: labels.map(() => 8),
+              borderColor: "red",
+              borderWidth: 2,
+              pointRadius: 0,
+              id: "limite",
+            },
+          ],
+        },
 
+        options: {
+          plugins: {
+            legend: {
+              labels: {
+                filter: function (legendItem, chartData) {
+                  return (
+                    chartData.datasets[legendItem.datasetIndex].id !== "limite"
+                  );
+                },
+              },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script>
+  </body>
 </html>
