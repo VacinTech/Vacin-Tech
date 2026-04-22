@@ -647,3 +647,8 @@ h3{
     cursor: pointer;
     border: none;
 }
+
+
+a:hover{
+    color: #3a2b80;
+}
