@@ -160,3 +160,9 @@ a{
     opacity: 0.8;
 
 }
+
+.seta-login-cadastro{
+    position: relative;
+    bottom: 150px;
+    font-size: 30px;
+}
