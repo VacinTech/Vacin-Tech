@@ -16,6 +16,10 @@ header {
     flex-direction: row;
     color: #5B6AC2;
     position: relative;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 5;
   
 }
 .cabecalho {
