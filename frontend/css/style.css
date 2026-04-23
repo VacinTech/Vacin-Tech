@@ -502,7 +502,7 @@ h2{
     align-items: center;
     justify-content: center;
     background-color: #fdfdfd;
-    height: 580px;
+    height: 650px;
     width: 550px;
     border-radius: 15px;
     box-shadow: 
@@ -541,12 +541,21 @@ h2{
 .pt_baixo button{
     margin-bottom: 0px;
 }
-
+#temperaturaB{
+    margin-top: 0px;
+}
 .pt_baixo{
     display: flex;
     flex-direction: column;
-    margin-top: -15px;
+    margin-top: 0px;
     align-items: flex-start;
+}
+
+.inputsB{
+    margin-left: 10px;
+}
+#rota{
+    margin-top: -15px;
 }
 
 
@@ -623,10 +632,14 @@ h3{
     
 }
 #minMax input{
-    width: 100px ;
+    width: 113px ;
 }
 #temps{
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 483px;
 }
 .ptDentro{
     display: flex;
